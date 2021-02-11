@@ -1,0 +1,341 @@
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color:#8BC6EC;
+}
+
+#root{
+    position: relative;
+}
+
+.stat{
+    background-color: #47509A;
+    width: 270px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    padding: 5px;
+    border: solid 5px #EFF8E2;
+    border-radius: 10px;
+    transition: all .5s ease;
+}
+
+.stat:hover{
+    background-color: #47519abe;
+    padding: 7px;
+}
+
+.stat__title{
+    color: #1b1f3b;
+    font-family: "Rubik";
+    font-weight: 700;
+    margin: 0;
+    padding: 5px;
+}
+
+.stat__value{
+    color: #EFF8E2;
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 5px;
+}
+
+.summary{
+    width: 100%;
+    height: 100vh;
+}
+
+.summary__spacer{
+    height: 20px;
+}
+
+.summary__stats{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.summary__title, .summary__title h2{
+    text-align: center;
+    font-family: "Poppins";
+    color: #1b1f3b;
+    font-size: 40px;
+}
+
+.matches, .matches__container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+}
+
+.matches__item{
+    width: 95%;
+    margin: 10px;
+    padding: 5px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 20.0px );
+    -webkit-backdrop-filter: blur( 12.0px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    position: relative;
+}
+
+.matches__stat{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.matches__title{
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    color: #1b1f3b;
+}
+
+.matches__id, .summary__name{
+    color: #47509A;
+}
+
+.match__date{
+    position: absolute;
+    font-size: 14px;
+    font-family: "Rubik", sans-serif;
+    top: 15px;
+    right: 20px;
+    background-color: #ffffff6c;
+    padding: 5px;
+    text-align: center;
+    border: solid 3px #47509A;
+    border-radius: 10px;
+    color: #47509A;
+}
+
+.match__date p{
+    margin: 0;
+}
+
+.match__hour{
+    font-size: 15px;
+}
+
+.matches__title--container{
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    color: #1b1f3b;
+    font-size: 40px;
+}
+
+.searcher{
+    width: 100%;;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.searcher__form{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+
+.searcher__input{
+    width: 50%;
+    font-size: 30px;
+    margin: 0;
+    background-color: #D9F4C7;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    border-style: none;
+    color: #1b1f3b;
+}
+
+.searcher__input::placeholder{
+    color: #8BC6EC;
+}
+
+.searcher__select{
+    font-size: 30px;
+    width: 25%;
+    background-color: #D9F4C7;
+    margin: 10px;
+    color: #1b1f3b;
+    border-radius: 10px;
+    outline: none;
+}
+
+.searcher__input:focus{
+    outline: none;
+}
+
+.searcher__submit{
+    border-style: none;
+    color: #D9F4C7;
+    border-style: none;
+    margin: 10px;
+    border-radius: 10px;
+    font-size: 30px;
+    width: 25%;
+    background-color: #1b1f3b;
+    transition: all .5s ease;
+    cursor: pointer;
+}
+
+.searcher__submit:hover{
+    font-size: 34px;
+}
+
+.title{
+    font-family: "Sora", sans-serif;
+    font-size: 50px;
+    text-align: center;
+}
+
+.title h1{
+    margin: 0;
+}
+
+.title__img{
+    width: 50px;
+    display: inline-block;
+}
+
+.info{
+    font-family: "Rubik",sans-serif;
+    font-weight: 300;
+    font-size: 40px;
+    text-align: center;
+}
+
+.github{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    transition: all .5s ease;
+}
+
+.github img{
+    width: 100%;
+}
+
+.github:hover{
+    width: 35px;
+}
+
+.up{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 30px;
+    transition: all .5s ease;
+    z-index: 2000;
+}
+
+.up img{
+    width: 100%;
+}
+
+.up:hover{
+    width: 35px;
+}
+@media (max-width: 700px){
+    body{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #8BC6EC;
+    }
+    
+    #root{
+        width: 95%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .title{
+        font-size: 30px;
+        margin-top: 50px;
+    }
+    
+    .github{
+        right: 10px;
+        top: 10px;
+    }
+    
+    .searcher{
+        margin-top: 40px;
+    }
+    
+    .searcher__form{
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .searcher__input{
+        background-color: #ffffff;
+        width: 90%;
+    }
+
+    .searcher__select{
+        background-color: #ffffff;
+        width: 100%;
+    }
+
+    .searcher__submit{
+        width: 100%;
+    }
+    
+    .info{
+        font-size: 30px;
+        margin-top: 40px;
+        width: 100%;
+    }
+    
+    .matches__item{
+        margin: 20px;
+        width: 80%;
+    }
+    
+    .matches{
+        width: 100vw;
+    }
+    
+    .match__date{
+        position: relative;
+        width: fit-content;
+        right: 50%;
+        left: 27%;
+        margin-bottom: 20px;
+    }
+    
+    .summary{
+        position: relative;
+    }
+    
+    .matches{
+        position: relative;
+    }
+    
+    .summary__title h2{
+        font-size: 35px;
+    }
+    
+    .summary{
+        height: fit-content;
+        padding-bottom: 20px;
+    }
+    
+    .summary__spacer{
+        height: 1px;
+    }
+}
