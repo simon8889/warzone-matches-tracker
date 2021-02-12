@@ -150,7 +150,7 @@ body{
     width: 50%;
     font-size: 30px;
     margin: 0;
-    background-color: #D9F4C7;
+    background-color: #ffffff;
     margin: 10px;
     border-radius: 10px;
     padding: 10px;
@@ -165,7 +165,7 @@ body{
 .searcher__select{
     font-size: 30px;
     width: 25%;
-    background-color: #D9F4C7;
+    background-color: #ffffff;
     margin: 10px;
     color: #1b1f3b;
     border-radius: 10px;
@@ -178,7 +178,7 @@ body{
 
 .searcher__submit{
     border-style: none;
-    color: #D9F4C7;
+    color: #ffffff;
     border-style: none;
     margin: 10px;
     border-radius: 10px;
@@ -221,6 +221,7 @@ body{
     right: 10px;
     width: 30px;
     transition: all .5s ease;
+    z-index: 2000;
 }
 
 .github img{

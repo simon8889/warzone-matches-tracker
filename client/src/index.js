@@ -1,84 +1,26 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDom from "react-dom";
+import {formatMetersToKilometers, formatSecondsToMinutes} from "./funcs";
 import "./index.css";
+import Stat from "./Stat";
 
-function getWarzoneMapByJsonName(map){
-    if (map === "mp_don3"){
-        return "Verdansk"
-    }
-    else if (map === "mp_escape2"){
-        return "Rebirth Island"
-    }
-    else{
-        return "Other COD Map"
-    }
-}
-
-const formatSecondsToMinutes = seconds => Math.floor(seconds / 60) + " Minutes";
-const formatMetersToKilometers = meters => Math.floor(meters / 1000) + " Km";
-
-const Stat = props => {
-    return (
-        <div className="stat">
-            <h3 className="stat__title">{props.title}:</h3>
-            <p className="stat__value">{props.value}</p>
-        </div>
-    )
-}
-
-const MatchesListItem = props => {
-    let matchData = props.matchData;
-    let playerStats = matchData.playerStats;
-    let startDate = new Date(matchData.utcStartSeconds * 1000);
-    let gulagInfo;
-    if (getWarzoneMapByJsonName(matchData.map) === "Verdansk"){
-        gulagInfo = (
-            <>
-                <Stat title={"Gulag wins"} value={playerStats.gulagKills}/>
-                <Stat title={"Gulag losses"} value={playerStats.gulagDeaths}/>
-            </>
-        )
-    }
-    return (
-    <div className="matches__item">
-        <div className="matches__title">
-            <h2>Match ID: <span className="matches__id">{matchData.matchID}</span></h2>
-        </div>
-        <div className="match__date">
-            <p>Start Date: <br /><span className="match__hour">{startDate.toLocaleString().replace(" "," - ")}</span></p>
-        </div>
-        <div className="matches__stat">
-            <Stat title={"Map"} value={getWarzoneMapByJsonName(matchData.map)} />
-            <Stat title={"K/D"} value={playerStats.kdRatio} />
-            <Stat title={"Kills"} value={playerStats.kills} />
-            <Stat title={"Deaths"} value={playerStats.deaths} />
-            <Stat title={"Assits"} value={playerStats.assists} />
-            <Stat title={"Score"} value={playerStats.score} />
-            <Stat title={"Headshots"} value={playerStats.headshots} />
-            <Stat title={"Longest killstreak"} value={playerStats.longestStreak} />
-            {gulagInfo}
-            <Stat title={"Damage done"} value={playerStats.damageDone}/>
-            <Stat title={"Damage taken"} value={playerStats.damageTaken}/>
-            <Stat title={"Time played"} value={formatSecondsToMinutes(playerStats.timePlayed)} />
-            <Stat title={"Distance traveled"} value={formatMetersToKilometers(playerStats.distanceTraveled)}/>
-        </div>
-    </div>)
-}
+const MatchesListItem = lazy(() => import("./MatchesListItem"))
 
 const MatchesList = props =>{
     let matchesToShow = new Array;
     props.matches.forEach(element => {
         matchesToShow.push((
-            <MatchesListItem  key={element.matchID} matchData={element}/>
+                <MatchesListItem  key={element.matchID} matchData={element}/>
         ))
     });
     return (
         <div className="matches__container">
             <h2 className="matches__title--container">Last matches stats</h2>
-            {matchesToShow}
+            <Suspense fallback={<div className="info"> Loading... </div>}>
+                {matchesToShow}
+            </Suspense>
         </div>
     )
-
 }
 
 const UserSummary = props => {
@@ -178,7 +120,7 @@ class App extends React.Component{
             "user": this.state.userInputValue.replace("#","%"),
             "platform": this.state.selectInputValue
         });
-        fetch("http://192.168.39.107:9000/getstats", {
+        fetch(process.env.REACT_APP_BACKEND_REQUEST_URL, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: data

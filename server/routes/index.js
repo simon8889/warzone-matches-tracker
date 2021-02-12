@@ -1,7 +1,9 @@
 const fetch = require("node-fetch");
+const dotenv = require("dotenv");
 var express = require('express');
 var router = express.Router();
 
+dotenv.config();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -17,8 +19,8 @@ router.route("/getstats")
         fetch(`https://call-of-duty-modern-warfare.p.rapidapi.com/warzone-matches/${body.user}/${body.platform}`, {
             "method": "GET",
             "headers": {
-                "x-rapidapi-key": "d170cf1b2cmshc0dd66768bea07ap19708ajsnd4b02c59dbbd",
-                "x-rapidapi-host": "call-of-duty-modern-warfare.p.rapidapi.com"
+                "x-rapidapi-key": process.env.API_KEY,
+                "x-rapidapi-host": process.env.API_HOST 
             }
         })
         .then(response => response.json())
